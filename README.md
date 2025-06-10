@@ -50,20 +50,6 @@ python app.py
 
 App chạy tại: http://127.0.0.1:5000
 
-🔧 Cấu trúc thư mục
-
-truyen-file-sha256/
-├── app.py
-├── socket_server.py
-├── templates/
-│   ├── login.html
-│   ├── register.html
-│   └── dashboard.html
-├── static/
-│   └── style.css
-├── uploads/
-├── downloads/
-└── database.db
 
 🚫 Lưu ý
 
@@ -76,15 +62,21 @@ SHA-256 dùng để xác minh tính toàn vẹn sau khi nhận file
 📄 Hình ảnh minh họa
 
 🔑 Giao diện đăng ký
+
+
 ![Đăng ký](h1.png)
 
 
 🔑 Giao diện đăng nhập
+
+
 ![Đăng nhập](h2.png)
 
 
 
 📊 Giao diện dashboard
+
+
 ![Dashboard](h3.png)
 
 
