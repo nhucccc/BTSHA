@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảng điều khiển</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-5xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Xin chào, {{ current_user.username }}</h1>
+            <a href="/logout" class="text-red-500 hover:underline">Đăng xuất</a>
+        </div>
+
+        <!-- Upload file -->
+        <div class="bg-white p-4 rounded shadow mb-6">
+            <h2 class="text-xl font-semibold mb-3">Gửi file cho người dùng khác</h2>
+            <form method="POST" action="/upload" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-4">
+                <input type="file" name="file" required class="flex-1 p-2 border rounded">
+                <select name="receiver" required class="flex-1 p-2 border rounded">
+                    <option value="">-- Chọn người nhận --</option>
+                    {% for user in users %}
+                        <option value="{{ user.username }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Gửi file</button>
+            </form>
+        </div>
+
+        <!-- Lịch sử -->
+        <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-xl font-semibold mb-3">Lịch sử gửi/nhận file</h2>
+            <table class="table-auto w-full">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Người gửi</th>
+                        <th class="px-4 py-2">Người nhận</th>
+                        <th class="px-4 py-2">Tên file</th>
+                        <th class="px-4 py-2">SHA-256</th>
+                        <th class="px-4 py-2">Tải xuống</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in history %}
+                    <tr class="border-t">
+                        <td class="px-4 py-2">{{ item.sender }}</td>
+                        <td class="px-4 py-2">{{ item.receiver }}</td>
+                        <td class="px-4 py-2">{{ item.filename }}</td>
+                        <td class="px-4 py-2 text-xs">{{ item.sha256[:10] }}...</td>
+                        <td class="px-4 py-2">
+                            {% if current_user.username == item.receiver %}
+                                <a href="/download/{{ item.filename }}" class="text-blue-500 hover:underline">Tải</a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
