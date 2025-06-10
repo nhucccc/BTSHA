@@ -76,14 +76,16 @@ SHA-256 dùng để xác minh tính toàn vẹn sau khi nhận file
 📄 Hình ảnh minh họa
 
 🔑 Giao diện đăng ký
-
+![Đăng ký](h1.png)
 
 
 🔑 Giao diện đăng nhập
+![Đăng nhập](h2.png)
 
 
 
 📊 Giao diện dashboard
+![Dashboard](h3.png)
 
 
 
